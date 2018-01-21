@@ -9,10 +9,13 @@ data.df <- subset(
   Date %in% c('1/2/2007','2/2/2007')
 )
 
+data.df$datetime <- strptime(paste(data.df$Date, data.df$Time), format = '%e/%m/%Y %H:%M:%S')
+
+Sys.setlocale("LC_ALL","English")
 par(bg=NA)
 with(data.df, {
-  hist(x = Global_active_power, col = 'red', main = 'Global Active Power', xlab = 'Global Active Power (kilowatts)')
+  plot(x = data.df$datetime, y = data.df$Global_active_power, type = 'l', ylab = 'Global Active Power (kilowatts)', xlab = '')
 })
 
-dev.copy(png, file = 'plot1.png')
+dev.copy(png, file = 'plot2.png')
 dev.off()
