@@ -14,8 +14,11 @@ data.df$datetime <- strptime(paste(data.df$Date, data.df$Time), format = '%e/%m/
 Sys.setlocale("LC_ALL","English")
 par(bg=NA)
 with(data.df, {
-  plot(x = datetime, y = Global_active_power, type = 'l', ylab = 'Global Active Power (kilowatts)', xlab = '')
+  plot(x = datetime, y = Sub_metering_1, type = 'l', ylab = 'Energy sub metering', xlab = '')
+  lines(x = datetime, y = Sub_metering_2, col = 'red')
+  lines(x = datetime, y = Sub_metering_3, col = 'blue')
+  legend('topright', legend = c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'), col = c('black', 'red', 'blue'), lty = 1)
 })
 
-dev.copy(png, file = 'plot2.png')
+dev.copy(png, file = 'plot3.png')
 dev.off()
